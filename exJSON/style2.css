@@ -1,0 +1,439 @@
+* {
+  margin: 0;
+  padding: 0;
+  outline: none;
+  font-family: sans-serif;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
+  position: relative;
+  -webkit-font-smoothing: antialiased;
+  width: 100%;
+  height: auto;
+  min-height: 100%;
+  overflow-x: hidden;
+}
+
+#posts {
+  max-width: 800px;
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+}
+
+#posts .post {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+#posts .post .post-info {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  width: 300px;
+  border: 2px solid silver;
+  margin: 5px auto;
+  padding: 5px;
+}
+
+#posts .post .post-info button {
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+#posts .post .title {
+  text-transform: uppercase;
+  text-align: center;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+#posts .post .content {
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 18px;
+  text-align: left;
+  margin-left: 10px;
+}
+
+#posts .post .comentarios .comentario .comentario-info {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+#posts .post .comentarios .comentario .comentario-conteudo {
+  width: 80%;
+  margin: 0 auto;
+  padding: 5px;
+}
+
+#autor-page {
+  max-width: 700px;
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+#autor-page h2 {
+  margin: 10px;
+}
+
+#autor-page h1 {
+  margin-bottom: 10px;
+}
+
+#autor-page h3 {
+  cursor: pointer;
+}
+
+#autor-page .galeria {
+  margin: 10px 0;
+  font-size: 18px;
+}
+
+#autor-page .albums > div:nth-child(odd) {
+  background-color: #e9e5e5;
+}
+
+#autor-page .albums > div:nth-child(even) {
+  background-color: lightgray;
+}
+
+#autor-page .albums .album .title-x {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+#autor-page .albums .album .title-x .close {
+  font-size: 60px;
+  line-height: 21px;
+  padding-right: 15px;
+  color: #888888;
+  display: none;
+  cursor: pointer;
+}
+
+#autor-page .albums .album .title-x .close:hover {
+  color: black;
+}
+
+#autor-page .albums .album .title-x .album-title {
+  cursor: pointer;
+  font-family: cursive;
+  text-transform: uppercase;
+  font-size: 22px;
+  padding-bottom: 20px;
+}
+
+#autor-page .albums .album .title-x .album-title:hover {
+  color: #888888;
+}
+
+#autor-page .albums .album .photos {
+  display: none;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+#autor-page .albums .album .photos .photo {
+  margin: 0 5px;
+}
+
+#autor-page .albums .album .photos .photo p {
+  width: 150px;
+  height: 150px;
+}
+
+#autor-list {
+  width: 100%;
+  background-image: linear-gradient(45deg, aliceblue, transparent);
+  padding-top: 40px;
+}
+
+#autor-list h1 {
+  text-align: center;
+}
+
+#autor-list .profile-pics {
+  max-width: 900px;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin: 0 auto;
+}
+
+#autor-list .profile-pics > div:nth-child(odd) {
+  background-color: lightgrey;
+}
+
+#autor-list .profile-pics > div:nth-child(even) {
+  background-color: aliceblue;
+}
+
+#autor-list .profile-pics .profile-pic {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin: 15px;
+  border-radius: 47%;
+}
+
+#autor-list .profile-pics .profile-pic img {
+  width: 200px;
+  height: auto;
+  border-radius: 50%;
+}
+
+#autor-list .profile-pics .profile-pic p {
+  text-align: center;
+}
+
+#autor-list .profile-pics .profile-pic .phone-web-mail {
+  text-align: center;
+}
+
+#autor-list .profile-pics .profile-pic .phone-web-mail img {
+  width: auto;
+  height: auto;
+}
+
+#sidenav-tarefas {
+  position: fixed;
+  top: 30%;
+  left: 30%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+#sidenav-tarefas .sidenav-header {
+  width: 100%;
+  height: 30px;
+  background-color: #141414;
+  color: white;
+  text-align: center;
+  line-height: 30px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: start;
+}
+
+#sidenav-tarefas .sidenav-header:hover > i {
+  color: #7538e6;
+}
+
+#sidenav-tarefas .sidenav-header p {
+  margin-left: 50px;
+}
+
+#sidenav-tarefas .sidenav-header i {
+  line-height: 30px;
+  cursor: pointer;
+  -webkit-transition: color 550ms ease;
+  transition: color 550ms ease;
+}
+
+#sidenav-tarefas .tarefas {
+  border: 1px solid black;
+}
+
+#sidenav-tarefas .tarefas .concluidas {
+  padding: 5px;
+  background-color: lightgreen;
+}
+
+#sidenav-tarefas .tarefas .concluidas p {
+  cursor: pointer;
+}
+
+#sidenav-tarefas .tarefas .concluidas ul {
+  display: none;
+  list-style-type: none;
+  width: 500px;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+#sidenav-tarefas .tarefas .concluidas ul li {
+  width: 160px;
+  height: 60px;
+  border: 2px solid black;
+  border-radius: 10px;
+  margin: 5px;
+  padding: 8px 0 0 8px;
+  opacity: 0.5;
+  -webkit-transition: 450ms all;
+  transition: 450ms all;
+}
+
+#sidenav-tarefas .tarefas .concluidas ul li:hover {
+  background-color: greenyellow;
+  opacity: 1;
+}
+
+#sidenav-tarefas .tarefas .concluidas ul li .tarefa-info {
+  display: none;
+}
+
+#sidenav-tarefas .tarefas .not-concluidas {
+  padding: 5px;
+  background-color: palevioletred;
+}
+
+#sidenav-tarefas .tarefas .not-concluidas p {
+  cursor: pointer;
+}
+
+#sidenav-tarefas .tarefas .not-concluidas ul {
+  display: none;
+  list-style-type: none;
+  width: 500px;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+#sidenav-tarefas .tarefas .not-concluidas ul li {
+  width: 160px;
+  height: 60px;
+  border: 2px solid black;
+  border-radius: 10px;
+  margin: 5px;
+  padding: 8px 0 0 8px;
+  opacity: 0.5;
+  -webkit-transition: 450ms all;
+  transition: 450ms all;
+}
+
+#sidenav-tarefas .tarefas .not-concluidas ul li:hover {
+  background-color: indianred;
+  opacity: 1;
+}
+
+#sidenav-tarefas .tarefas .not-concluidas ul li .tarefa-info {
+  display: none;
+}
+
+#header_certo {
+  width: 100%;
+  height: 75px;
+  background-color: black;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#header_certo .header-wrapper {
+  max-width: 1180px;
+  width: 100%;
+  height: 80%;
+  margin: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#header_certo .header-wrapper .posts {
+  width: 240px;
+  height: 100%;
+  background-color: white;
+  -webkit-box-shadow: 4px 4px silver;
+          box-shadow: 4px 4px silver;
+}
+
+#header_certo .header-wrapper .posts a {
+  font-family: 'Girassol', cursive;
+  font-size: 55px;
+  padding: 2px;
+}
+
+#header_certo .header-wrapper .usuarios {
+  width: 240px;
+  height: 100%;
+  background-color: white;
+  -webkit-box-shadow: 4px 4px silver;
+          box-shadow: 4px 4px silver;
+}
+
+#header_certo .header-wrapper .usuarios a {
+  font-family: 'Girassol', cursive;
+  font-size: 55px;
+  padding: 2px;
+}
+
+#header_certo .header-wrapper .albums {
+  width: 240px;
+  height: 100%;
+  background-color: white;
+  -webkit-box-shadow: 4px 4px silver;
+          box-shadow: 4px 4px silver;
+}
+
+#header_certo .header-wrapper .albums a {
+  font-family: 'Girassol', cursive;
+  font-size: 55px;
+  padding: 2px;
+}
+/*# sourceMappingURL=style2.css.map */
