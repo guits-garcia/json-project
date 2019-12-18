@@ -28,28 +28,30 @@ function show_pics(x){
 //função para mostrar as fotos de cada album fim //
 
 //função para mover a nav das tarefas!!! inicio //
-const nav_bullseye = document.querySelector("#bullseye");
-const nav = document.getElementById('sidenav-tarefas');
-var mousedownFlag;
-
-nav_bullseye.addEventListener('mousedown', function(){
-window.mousedownFlag = 1;
-})
-
-window.addEventListener('mouseup',function(){
-    window.mousedownFlag = 0;
-})
-
-window.addEventListener('mousemove',function(){
-    var x = event.clientX;
-    var y = event.clientY; 
-    if(window.mousedownFlag == 1){
-        if ((x > 0 && y > 0) && (x < (window.innerWidth - 270) && y < (window.innerHeight - 90))){
-            nav.style.top = `${y}px`;
-            nav.style.left = `${x}px`;
+if (document.getElementById('autor-page')){
+    const nav_bullseye = document.querySelector("#bullseye");
+    const nav = document.getElementById('sidenav-tarefas');
+    var mousedownFlag;
+    
+    nav_bullseye.addEventListener('mousedown', function(){
+    window.mousedownFlag = 1;
+    })
+    
+    window.addEventListener('mouseup',function(){
+        window.mousedownFlag = 0;
+    })
+    
+    window.addEventListener('mousemove',function(){
+        var x = event.clientX;
+        var y = event.clientY; 
+        if(window.mousedownFlag == 1){
+            if ((x > 0 && y > 0) && (x < (window.innerWidth - 270) && y < (window.innerHeight - 90))){
+                nav.style.top = `${y}px`;
+                nav.style.left = `${x}px`;
+            }
         }
-    }
-});
+    });
+
 //função para mover a nav das tarefas!!! fim //
 
 
@@ -88,4 +90,88 @@ not_concl.children[0].addEventListener('click',function(){
         window.not_concl_open = 0;
     }
 })
+}
+//função para mostrar as tarefas FIM//
 
+
+//ABRIR MODAIS DAS IMAGENS - AUTOR-PAGE.PHP INÍCIO //
+var modal = document.getElementById('modal');
+var modal_img = document.getElementById('modal-img');
+var modal_close_btwn = document.getElementById('modal-close');
+var modal_caption = document.getElementById('modal-caption');
+function showModal(x){
+modal.style.display = "block"; //mostra o modal
+modal.style.visibility = "visible";
+setTimeout(function(){
+    modal.style.opacity = "0.95";
+}, 5);
+var url = x.dataset.url; //pega a url
+var caption = x.parentNode.children[1].innerHTML;
+console.log(caption);
+modal_img.src=`${url}`; //bota na src da img
+modal_caption.innerHTML = caption;
+}
+
+function closeModal(){
+modal.style.display = "none";
+modal.style.visibility = "hidden";
+modal.style.opacity = "0";
+}
+//ABRIR MODAIS DAS IMAGENS - AUTOR-PAGE.PHP FIM //
+
+//MOSTRAR INFO PHONE-WEB-MAIL AUTOR-LIST.PHP INICIO //
+function showInfo(x){
+    x.style.transform = "scale(1.2)";
+    x.style.filter = "drop-shadow(0px 0px 1px gray)";
+    x.style.paddingRight = "5px";
+    var info = x.dataset.info;
+    x.parentNode.parentNode.children[3].innerHTML = info;
+    x.parentNode.parentNode.children[3].style.display = "block";
+    x.parentNode.parentNode.children[3].style.visibility = "visible";
+    setTimeout(function(){
+        x.parentNode.parentNode.children[3].style.opacity = "0.95";
+    }, 5);
+}
+function hideInfo(x){
+    x.style.transform = "scale(1)";
+    x.style.filter = "none";
+    x.style.paddingRight = "0";
+    x.parentNode.parentNode.children[3].style.display = "none";
+    x.parentNode.parentNode.children[3].style.visibility = "hidden";
+    x.parentNode.parentNode.children[3].style.opacity = "0";
+}
+//MOSTRAR INFO PHONE-WEB-MAIL AUTOR-LIST.PHP FIM //
+
+
+//FUNÇÃO PARA MOSTRAR OS COMENTÁRIOS INDEX.PHP INICIO //
+function showComments(x){
+    var title = x.parentNode.parentNode.children[1];
+    var content = x.parentNode.parentNode.children[3];
+    var post = x.parentNode.parentNode.parentNode;
+    var comments = post.children[1];
+    if(x.dataset.after == 'veja comentários..'){
+        console.log(x);
+        console.log(x.parentNode.parentNode);
+        x.setAttribute('data-after', 'Fechar comentários');
+        title.style.fontSize = "38px";
+        title.style.marginBottom = "10px";
+        content.style.fontSize = "22px";
+        content.style.padding = "15px";
+        content.style.marginBottom = "15px";
+        post.style.width = "100%";
+        post.style.height = "fit-content";
+        comments.style.display = 'block';
+    } else if (x.dataset.after == 'Fechar comentários'){
+        x.setAttribute('data-after', 'veja comentários..');
+        title.style.fontSize = "28px";
+        title.style.marginBottom = "0px";
+        content.style.fontSize = "18px";
+        content.style.padding = "0px";
+        content.style.marginBottom = "0px";
+        post.style.width = "45%";
+        post.style.height = "215px";
+        comments.style.display = 'none';
+    }
+   
+}
+//FUNÇÃO PARA MOSTRAR OS COMENTÁRIOS INDEX.PHP FIM //

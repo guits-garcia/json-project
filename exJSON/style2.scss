@@ -20,58 +20,160 @@ body {
     min-height: 100%;
     overflow-x: hidden;
 }
-
-    #posts{
-        max-width:800px;
+    #posts-wrap{
         width:100%;
         height:100%;
-        margin:0 auto;
-        .post{
+        background-color:lightgray;
+        padding-top:40px;
+        #posts{
+            max-width:1100px;
             width:100%;
+            height:100%;
+            margin:0 auto;
             display:flex;
-            flex-direction:column;
-            .post-info{
+            flex-wrap:wrap;
+            justify-content:center;
+            background-image:linear-gradient(45deg,grey,transparent);  
+            .post{
+                width:45%;
+                height:215px;
+                margin:10px;
+                padding-top:10px;
+                border:1px solid black;
                 display:flex;
-                flex-direction:row;
-                justify-content: space-between;
-                width:300px;
-                border: 2px solid silver;
-                margin:5px auto;
-                padding:5px;
-                button{
-                    border:none;
-                    cursor:pointer;
+                flex-direction:column;
+                transition: 450ms all;
+                &:hover{
+                    box-shadow: 12px 12px 4px black;
+                    background-color:#EBE8E9;//rgb(235, 232, 232);
+                }
+                &:hover .post-info a:after{
+                    padding:3px 3px;
+                    margin-left:-3px!important;
+                    margin-top:-21px;
+                    opacity: 1;
                     font-size:16px;
+                    box-shadow: 1px 1px 5px 2px black;
+                    // transition: 0s
+                }
+                &:hover .post-info p:after{
+                    padding:3px 3px;
+                    margin-left:-3px!important;
+                    margin-top:-21px;
+                    opacity: 1;
+                    font-size:16px;
+                    box-shadow: 1px 1px 5px 2px black;
+                }
+                .autor{
+                    font-size:14px;
+                    padding:5px 0px;
+                    text-align: center;
+                }
+                .post-info{
+                    display:flex;
+                    flex-direction:row;
+                    justify-content: space-between;
+                    width:300px;
+                    border: 2px solid silver;
+                    margin:5px auto;
+                    padding:5px;
+                    a{
+                        border:none;
+                        cursor:pointer;
+                        font-size:16px;
+                        background-color:transparent;
+                        box-shadow: 1.8px 1.8px 2.8px black;
+                        padding: 3px;
+                        transition-duration: 0.4s;
+                        overflow:hidden;
+                        z-index:2;
+                        &:after{
+                            content:attr(data-after);
+                            background:#EBE8E9;
+                            display:block;
+                            position:absolute;
+                            padding: 0;
+                            margin: 0;
+                            opacity:0;
+                            transition:all 0.8s;
+                            z-index:1;
+                        }
+                    }
+                    p{
+                        box-shadow: 1.8px 1.8px 2.8px black;
+                        padding: 3px;
+                        width:fit-content;
+                        &:after{
+                            content: attr(data-after);
+                            background:#EBE8E9;
+                            display:block;
+                            position:absolute;
+                            padding: 0;
+                            margin: 0;
+                            opacity:0;
+                            transition:all 0.8s;
+                            z-index:1;
+                        }
+                    }
+                }
+                .title{
+                    text-transform: uppercase;
+                    text-align:center;
+                    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+                    font-size:28px;
+                    font-weight: 700;
+                }
+                .content{
+                    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+                    font-size:18px;
+                    text-align:left;
+                    margin-left:10px;
+                }
+                .comentarios{
+                    display:none;
+                    hr{
+                        border-color:black;
+                    }
+                    p{
+                        text-align:center;
+                        font-size:18px;
+                        font-weight:bold;
+                        padding-top:15px;
+                    }
+                    .comentario{
+                       
+                        .comentario-info{
+                            display:flex;
+                            flex-direction:row;
+                            padding-left:15px;
+                            p{
+                                padding-top:0px;
+                                font-size:16px;
+                                font-weight:normal;
+                                text-align:left;
+                            }
+                        }
+                        .comentario-conteudo{
+                            width:80%;
+                            margin: 0 auto;
+                            padding: 5px;
+                            p{
+                                padding-top:0px;
+                                font-size:14px;
+                                font-weight:normal;
+                                padding: 10px 5px;
+                                text-align:left;
+                            }
+                        }
+                    }
                 }
             }
-            .title{
-                text-transform: uppercase;
+            .paginacao{
                 text-align:center;
-                font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-                font-size:24px;
-                font-weight: 700;
-            }
-            .content{
-                font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-                font-size:18px;
-                text-align:left;
-                margin-left:10px;
-            }
-            .comentarios{
-                .comentario{
-                    .comentario-info{
-                        display:flex;
-                        flex-direction:row;
-                    }
-                    .comentario-conteudo{
-                        width:80%;
-                        margin: 0 auto;
-                        padding: 5px;
-                    }
-                }
             }
         }
     }
+    
 
     #autor-page{
         max-width:700px;
@@ -131,6 +233,26 @@ body {
                     justify-content: center;
                     .photo{
                         margin:0 5px;
+                        .thumbnail{
+                            &:hover{
+                                animation: shake 0.5s;
+                                animation-iteration-count: infinite;
+                            }
+                            @keyframes shake{
+                                0% { transform: translate(1px, 1px) rotate(0deg); }
+                                10% { transform: translate(-1px, -2px) rotate(-1deg); }
+                                20% { transform: translate(-3px, 0px) rotate(1deg); }
+                                30% { transform: translate(3px, 2px) rotate(0deg); }
+                                40% { transform: translate(1px, -1px) rotate(1deg); }
+                                50% { transform: translate(-1px, 2px) rotate(-1deg); }
+                                60% { transform: translate(-3px, 1px) rotate(0deg); }
+                                70% { transform: translate(3px, 1px) rotate(-1deg); }
+                                80% { transform: translate(-1px, -1px) rotate(1deg); }
+                                90% { transform: translate(1px, 2px) rotate(0deg); }
+                                100% { transform: translate(1px, -2px) rotate(-1deg); }
+                            }
+                        }
+
                         p{
                             width:150px;
                             height:150px;
@@ -141,6 +263,63 @@ body {
             }
         }
     }
+    #modal{
+        display:none;
+        position:fixed;
+        z-index:1;
+        padding-top:100px;
+        left:0;
+        top:0;
+        width:100%;
+        height:100%;
+        overflow:auto;
+        visibility:hidden; //estou usando só pra conseguir o efeito da opacidade. muda o display -> muda a visibility -> dai muda a opacidade
+        background-color:rgb(0,0,0);
+        opacity:0; //botar uma transição na opacidade do background!!! talvez usando keyframes
+        transition: opacity 600ms ease 200ms;
+        #modal-img{
+            margin:auto;
+            display:block;
+            width:80%;
+            max-width:700px;
+        }
+        #modal-caption {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 700px;
+            text-align: center;
+            color: #ccc;
+            padding: 10px 0;
+            height: 150px;
+            font-size:18px;
+            text-shadow:1px 1px 3px silver;
+          }
+          #modal-img, #modal-caption {
+            animation-name: zoom;
+            animation-duration: 0.6s;
+          }
+          @keyframes zoom {
+            from {transform:scale(0)}
+            to {transform:scale(1)}
+          }
+          #modal-close {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+            &:hover,
+            &:focus {
+            color: #bbb;
+            text-decoration: none;
+            cursor: pointer;
+            }
+          }
+    }
+
 
     #autor-list{
         width:100%;
@@ -163,24 +342,48 @@ body {
                 background-color:aliceblue;
             }
             .profile-pic{
-                width:fit-content;
+                width:fit-content; //232
                 margin:15px;
-                border-radius:47%;
+                margin-bottom:20px;
+                border-radius:47%; //48;
+                position:relative;
+                text-align:center;
+                display:flex;
+                flex-direction:column;
+                justify-content:center;
                 img{
-                    width:200px;
+                    width:200px; //207
                     height:auto;
                     border-radius:50%;
                 }
-                p{
+                a{
                     text-align:center;
+                    margin:5px;
+                    padding:0;
                 }
                 .phone-web-mail{
                     text-align:center;
                     img{
+                        transition-property: transform, filter, -webkit-filter, padding-left;
+                        transition-duration: 450ms;
                         width:auto;
                         height:auto;
                     }
-                    
+                }
+                .info-phone-web-mail{
+                    text-align: center;
+                    color:goldenrod;
+                    border:2px solid gold;
+                    padding:2px;
+                    margin: 5px auto;
+                    position:absolute;
+                    left:50%;
+                    transform:translateX(-50%);
+                    display:none;
+                    width:fit-content;
+                    opacity:0;
+                    transition: opacity 600ms ease 100ms;
+                    bottom:-35px;
                 }
             }
         }

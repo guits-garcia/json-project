@@ -5,7 +5,7 @@
         $autor_id = $_GET['autor-id'];
         $cr = curl_init(); 
         curl_setopt($cr, CURLOPT_URL, "https://jsonplaceholder.typicode.com/users?id=$autor_id");
-        //curl_setopt($cr, CURLOPT_PROXY, $proxy);
+        curl_setopt($cr, CURLOPT_PROXY, $proxy);
         curl_setopt($cr, CURLOPT_RETURNTRANSFER, true);
         $data = curl_exec($cr);
         $usuario = json_decode($data);
@@ -50,7 +50,7 @@
 <?php $cr = curl_init(); 
         $proxy = '192.168.10.254:3128';
         curl_setopt($cr, CURLOPT_URL, "https://jsonplaceholder.typicode.com/albums?userId=$autor_id");
-        //curl_setopt($cr, CURLOPT_PROXY, $proxy);
+        curl_setopt($cr, CURLOPT_PROXY, $proxy);
         curl_setopt($cr, CURLOPT_RETURNTRANSFER, true);
         $data = curl_exec($cr);
         $albums = json_decode($data);
@@ -68,7 +68,7 @@
                 $cr = curl_init(); 
                 $proxy = '192.168.10.254:3128';
                 curl_setopt($cr, CURLOPT_URL, "https://jsonplaceholder.typicode.com/photos?albumId=$album->id");
-                //curl_setopt($cr, CURLOPT_PROXY, $proxy);
+                curl_setopt($cr, CURLOPT_PROXY, $proxy);
                 curl_setopt($cr, CURLOPT_RETURNTRANSFER, true);
                 $data = curl_exec($cr);
                 $photos = json_decode($data);
@@ -76,7 +76,7 @@
                 echo "<div class='photos'>";
                 foreach ($photos as $photo){
                     echo "<div class='photo'>
-                        <img class='thumbnail' src='$photo->thumbnailUrl' data-image-url='$photo->url'>
+                        <img class='thumbnail' src='$photo->thumbnailUrl' data-url='$photo->url' onclick='showModal(this)'>
                         <p>$photo->title #$photo->id</p>
                     </div>";
                 }  
@@ -89,6 +89,12 @@
 </section>
 
 
+<div id="modal">
+    <span id="modal-close" onclick='closeModal()'>&times;</span>
+    <img id="modal-img">
+    <div id="modal-caption"></div>
+</div>
+
 <div id="sidenav-tarefas">
     <div class="sidenav-header">
     <i class="fas fa-bullseye fa-lg" id="bullseye"></i><p>Me mude de lugar!</p>
@@ -99,7 +105,7 @@
         <?php   $cr = curl_init(); 
     $proxy = '192.168.10.254:3128';
     curl_setopt($cr, CURLOPT_URL, "https://jsonplaceholder.typicode.com/todos?userId=$autor_id&completed=true");
-    //curl_setopt($cr, CURLOPT_PROXY, $proxy);
+    curl_setopt($cr, CURLOPT_PROXY, $proxy);
     curl_setopt($cr, CURLOPT_RETURNTRANSFER, true);
     $data = curl_exec($cr);
     $concluidas = json_decode($data);
@@ -124,7 +130,7 @@
             <?php   $cr = curl_init(); 
     $proxy = '192.168.10.254:3128';
     curl_setopt($cr, CURLOPT_URL, "https://jsonplaceholder.typicode.com/todos?userId=$autor_id&completed=false");
-    //curl_setopt($cr, CURLOPT_PROXY, $proxy);
+    curl_setopt($cr, CURLOPT_PROXY, $proxy);
     curl_setopt($cr, CURLOPT_RETURNTRANSFER, true);
     $data = curl_exec($cr);
     $not_concluidas = json_decode($data);
