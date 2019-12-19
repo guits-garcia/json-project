@@ -4,6 +4,7 @@
     outline: none;
     font-family:sans-serif;
 }
+
 a {
     text-decoration: none;
     color: inherit;
@@ -25,6 +26,10 @@ body {
         height:100%;
         background-color:lightgray;
         padding-top:40px;
+        display:flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items:center ;
         #posts{
             max-width:1100px;
             width:100%;
@@ -172,6 +177,9 @@ body {
                 text-align:center;
             }
         }
+        .paginaccion{
+            font-size:22px;
+        }
     }
     
 
@@ -231,6 +239,200 @@ body {
                     display:none;
                     flex-wrap:wrap;
                     justify-content: center;
+                    .photo{
+                        margin:0 5px;
+                        .thumbnail{
+                            &:hover{
+                                animation: shake 0.5s;
+                                animation-iteration-count: infinite;
+                            }
+                            @keyframes shake{
+                                0% { transform: translate(1px, 1px) rotate(0deg); }
+                                10% { transform: translate(-1px, -2px) rotate(-1deg); }
+                                20% { transform: translate(-3px, 0px) rotate(1deg); }
+                                30% { transform: translate(3px, 2px) rotate(0deg); }
+                                40% { transform: translate(1px, -1px) rotate(1deg); }
+                                50% { transform: translate(-1px, 2px) rotate(-1deg); }
+                                60% { transform: translate(-3px, 1px) rotate(0deg); }
+                                70% { transform: translate(3px, 1px) rotate(-1deg); }
+                                80% { transform: translate(-1px, -1px) rotate(1deg); }
+                                90% { transform: translate(1px, 2px) rotate(0deg); }
+                                100% { transform: translate(1px, -2px) rotate(-1deg); }
+                            }
+                        }
+
+                        p{
+                            width:150px;
+                            height:150px;
+                        }
+                    }
+                }
+                
+            }
+        }
+    }
+
+    #autor-portfl{
+        width:100%;
+        height:100vh;
+            .img-bg{
+                width:100%;
+                height:100%;
+                position:relative;
+                background-color:#e4e4e4;
+                .facepic{
+                    height:680px;
+                    width:330px;
+                    position:absolute;
+                    top:5%;
+                    left:50%;
+                    transform:translate(-50%,-5%);
+                    object-position:center;
+                    object-fit:none;
+                    filter:drop-shadow(2px 4px 6px black);
+                    transition: left 600ms, top 400ms 600ms;
+                }
+                    .portfl-name{
+                        transition:all 600ms ease 200ms;
+                        font-family: 'Titillium Web', sans-serif;
+                        font-size:60px;
+                        font-weight:700;
+                        position:absolute;
+                        top:80%;
+                        left:55%;
+                        transform:translateX(-50%);
+                    }
+                    .companypic{
+                        position:absolute;
+                        top:80%;
+                        left:55%;
+                        transform:translateX(-50%);
+                        opacity:0;
+                        transition:all 600ms ease 200ms;
+                    }
+                    .portfl-company{
+                        transition:all 600ms ease 200ms;
+                        position:absolute;
+                        top:80%;
+                        left:55%;
+                        transform:translateX(-50%);
+                        font-size:50px;
+                        opacity:0;
+                        background:linear-gradient(45deg,rgb(167, 167, 6),rgb(70, 69, 69));
+                        -webkit-background-clip:text;
+                        -webkit-text-fill-color:transparent;
+                        text-shadow:3px 3px 10px black;
+
+                    }
+                    .portfl-catch{
+                        transition:all 600ms ease 200ms;
+                        position:absolute;
+                        top:80%;
+                        left:55%;
+                        transform:translateX(-50%);
+                        opacity:0;
+                    }
+                    .portfl-albuns{
+                        height:680px;
+                        width:330px;
+                        background-color:lightgrey;
+                        position:absolute;
+                        z-index:-1;
+                        opacity:0;
+                        top:5%;
+                        left:50%;
+                        transform:translate(-50%,-5%);
+                        transition: left 600ms, top 400ms 600ms, opacity 600ms;
+                        display:flex;
+                        flex-direction:column;
+                        flex-wrap:wrap;
+                        justify-content:space-around;
+                        align-items:center;
+                        filter:drop-shadow(2px 4px 6px black);
+                        .portfl-photo{
+                            width:120px;
+                            height:120px;
+                            filter:sepia(0.75);
+                        }
+                    }
+            }
+    }
+
+    #album-page{
+        width:100vw;
+        height:100vh;
+        .list-autors{
+            display:flex;
+            flex-direction:column;
+            align-items: center;
+            a{
+                font-family: 'Titillium Web', sans-serif;
+                text-align: center;
+                margin:30px 0;
+                font-size:60px;
+                font-weight:700;
+            }
+        }
+       
+        h1{
+            font-family: 'Titillium Web', sans-serif;
+            text-align: center;
+            margin:30px 0;
+            font-size:60px;
+            font-weight:700;
+        }
+        .album-wrapper{
+            max-width:1180px;
+            width:100%;
+            margin:0 auto;
+            > div:nth-child(odd){
+                background-color:rgb(233, 229, 229);
+            }
+            > div:nth-child(even){
+                background-color:rgb(211, 211, 211);
+            }
+            .album{
+                transition: all 450ms;
+                p{
+                    text-align:center;
+                }
+
+                .title-x{
+                    display:flex;
+                    justify-content:center;
+                    
+                    .close{
+                        font-size:60px;
+                        line-height:21px;
+                        padding-right:15px;
+                        color:#888888;
+                        display:none;
+                        cursor:pointer;
+                        &:hover{
+                            color:black;
+                        }
+                    }
+                    .album-title{
+                        cursor:pointer;
+                        font-family: 'Titillium Web', sans-serif;
+                        text-transform: uppercase;
+                        font-size: 22px;
+                        padding-bottom:20px;
+                        text-align: center;
+                        width:100%;
+                        &:hover{
+                            color:#888888;
+                        }
+                    }
+                }
+                .photos{
+                    display:flex;
+                    flex-wrap:wrap;
+                    justify-content: center;
+                    visibility:hidden;
+                    height:0;
+                    transition:height 1s, opacity 600ms ease 1s;
+                    opacity:0;
                     .photo{
                         margin:0 5px;
                         .thumbnail{
@@ -329,12 +531,15 @@ body {
             text-align:center;
         }
         .profile-pics{
-            max-width:900px;
-            width:100%;
+            // max-width:900px;
+            // width:100%;
             display:flex;
             flex-wrap:wrap;
             justify-content:center;
             margin:0 auto;
+            background-size:cover;
+            background-position:center;
+            transition:all 800ms;
             > div:nth-child(odd){
                 background-color:lightgrey;
             }
@@ -342,19 +547,24 @@ body {
                 background-color:aliceblue;
             }
             .profile-pic{
-                width:fit-content; //232
-                margin:15px;
-                margin-bottom:20px;
+                // width:fit-content; //232
+                // margin:15px;
+                // margin-bottom:20px;
                 border-radius:47%; //48;
-                position:relative;
+                // position:relative;
                 text-align:center;
-                display:flex;
-                flex-direction:column;
-                justify-content:center;
+                // display:flex;
+                // flex-direction:column;
+                // justify-content:center;
                 img{
                     width:200px; //207
                     height:auto;
                     border-radius:50%;
+                    margin-left:-4px;
+                    filter: contrast(0.6);
+                    &:hover{
+                        filter:none;
+                    }
                 }
                 a{
                     text-align:center;
@@ -387,6 +597,11 @@ body {
                 }
             }
         }
+    }
+
+    .login{
+        width:200px;
+        height:300px;
     }
 
     #sidenav-tarefas{
@@ -500,38 +715,38 @@ body {
             display:flex;
             justify-content: space-around;
             align-items:center;
-            .posts{
+             .albums, .posts, .usuarios{
                 width:240px;
                 height:100%;
                 background-color:white;
                 box-shadow:4px 4px silver;
+                position:relative;
+                overflow-x:hidden;
+                opacity:0.99;
+                &:before{
+                    content:"";
+                    background-color:gold;
+                    opacity:0.6;
+                    position:absolute;
+                    z-index:-1;
+                    top:0; bottom:0; left:0; right:0;
+                    transform:translateX(-100%);
+                    transition:450ms transform;
+                }
+                &:hover:before {
+                    transform:translateX(0); 
+                }
                 a{
                     font-family: 'Girassol', cursive;
                     font-size:55px;
                     padding:2px;
                  }
-             }
-             .usuarios{
-                
-                 width:240px;
-                 height:100%;
-                 background-color:white;
-                 box-shadow:4px 4px silver;
-                 a{
-                    font-family: 'Girassol', cursive;
-                    font-size:55px;
-                    padding:2px;
-                 }
-             }
-             .albums{
-                width:240px;
-                height:100%;
-                background-color:white;
-                box-shadow:4px 4px silver;
-                a{
-                    font-family: 'Girassol', cursive;
-                    font-size:55px;
-                    padding:2px;
+                 &.atual{
+                     background-color:black;
+                     border:1px solid silver;
+                     a{
+                         color:gold;
+                     }
                  }
              }
         }
@@ -542,3 +757,5 @@ body {
     //     height:120px;
     //     background-color:red;
     // }
+
+@import 'style.scss';

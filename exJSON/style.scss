@@ -1,45 +1,56 @@
-*{
-    margin:0;
-    padding:0;
-    font-family: sans-serif;
-}
+/// @param {Integer} $item-count - Number of items on the circle
+/// @param {Length} $circle-size - Large circle size
+/// @param {Length} $item-size - Single item size
 
-main{
-    width:100vw;
-    #posts{
-        display: flex;
-        flex-direction:column;
-        max-width:1000px;
-        width:100%;
-        margin: 0 auto;
-        > div:nth-child(odd){
-            background-color:rgb(219, 209, 209);
+@mixin on-circle($item-count, $circle-size, $item-size) {
+    position: relative;
+    width:  $circle-size;
+    height: $circle-size;
+    padding: 0;
+    border-radius: 50%; 
+    list-style: none;       
+    
+    > * {
+      display: block;
+      position: absolute;
+      top:  50%; 
+      left: 50%;
+      width:  12em; //era $item-size
+      height: $item-size;
+      margin: -($item-size / 2);
+    
+      $angle: (360 / $item-count);
+      $rot: 0;
+  
+      @for $i from 1 through $item-count {
+        &:nth-of-type(#{$i}) {
+          transform: 
+            rotate($rot * 1deg) 
+            translate($circle-size / 2) 
+            rotate($rot * -1deg);
         }
-    .post{
-        margin:10px 0;
-        .post-id-info{
-            display:flex;
-            flex-direction:row;
-            justify-content:space-around;
-        }
-        .post-title{
-            text-align:center;
-            font-weight:700;
-            font-size:32px;
-        }
-        .psot-content{
-            font-size:16px;
-            margin-left:10px;
-        }
-        .comentarios{
-            .comentario{
-                .comentario-info{
-                    display:flex;
-                    flex-direction:row;
-                    justify-content:space-around;
-                }
-            }
-        }
+  
+        $rot: $rot + $angle;
+      }
     }
-    }
-}
+  }
+  
+  .profile-pics {
+    @include on-circle($item-count: 10, $circle-size: 46em, $item-size: 10em); 
+    margin: 5em auto 0;
+    border: solid 5px palegoldenrod;
+    
+    // img { 
+    //   display: block; 
+    //   max-width: 100%; 
+    //   border-radius: 50%;
+    //   filter: grayscale(100%);
+    //   border: solid 5px tomato;
+    //   transition: .15s;
+      
+    //   &:hover,
+    //   &:active {
+    //     filter: grayscale(0);
+    //   }
+    // }
+  }

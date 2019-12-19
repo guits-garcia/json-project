@@ -47,53 +47,7 @@
       
  <?php   } ?>    
 
-<?php $cr = curl_init(); 
-        $proxy = '192.168.10.254:3128';
-        curl_setopt($cr, CURLOPT_URL, "https://jsonplaceholder.typicode.com/albums?userId=$autor_id");
-        curl_setopt($cr, CURLOPT_PROXY, $proxy);
-        curl_setopt($cr, CURLOPT_RETURNTRANSFER, true);
-        $data = curl_exec($cr);
-        $albums = json_decode($data);
-        curl_close($cr);
-        echo "
-        <p class='galeria'>Galeria do Autor: </p>
-        <div class='albums'>";
-        foreach ($albums as $album){
-            echo "<div class='album' >
-                    <p>Album #$album->id</p>
-                    <div class='title-x'>
-                        <p class='album-title' onclick='show_pics(this)'>$album->title</p>
-                        <span class='close' onclick='show_pics(this)'>&times;</span>
-                    </div>";
-                $cr = curl_init(); 
-                $proxy = '192.168.10.254:3128';
-                curl_setopt($cr, CURLOPT_URL, "https://jsonplaceholder.typicode.com/photos?albumId=$album->id");
-                curl_setopt($cr, CURLOPT_PROXY, $proxy);
-                curl_setopt($cr, CURLOPT_RETURNTRANSFER, true);
-                $data = curl_exec($cr);
-                $photos = json_decode($data);
-                curl_close($cr);
-                echo "<div class='photos'>";
-                foreach ($photos as $photo){
-                    echo "<div class='photo'>
-                        <img class='thumbnail' src='$photo->thumbnailUrl' data-url='$photo->url' onclick='showModal(this)'>
-                        <p>$photo->title #$photo->id</p>
-                    </div>";
-                }  
-                echo "</div>";
-            echo  "</div>";
-        }
-       echo "</div>";
-?>
-
 </section>
-
-
-<div id="modal">
-    <span id="modal-close" onclick='closeModal()'>&times;</span>
-    <img id="modal-img">
-    <div id="modal-caption"></div>
-</div>
 
 <div id="sidenav-tarefas">
     <div class="sidenav-header">

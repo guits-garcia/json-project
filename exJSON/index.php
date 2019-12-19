@@ -1,6 +1,6 @@
 
 <?php include 'header.php'; ?>
-    <div id="posts-wrap">
+    <section id="posts-wrap">
     <?php
         $ch = curl_init(); 
         $proxy = '192.168.10.254:3128';
@@ -37,7 +37,7 @@
 
 
 
-<section id="posts">
+<div id="posts">
         <?php 
         // echo "<pre>";
         // print_r($posts[0]);
@@ -55,7 +55,7 @@
                     <div class='post-stuff'>
                         <div class='post-info'>
                             <p onclick='showComments(this)' data-after='veja comentários..' >Post de número: $post->id </p>
-                            <a href='autor-page.php?autor-id=$post->userId' id='autor-id' data-after='Visite o autor!'>
+                            <a href='autor-portfl.php?autor-id=$post->userId' id='autor-id' data-after='Visite o autor!'>
                                 Id do autor: $post->userId
                             </a>
                         </div>
@@ -104,8 +104,15 @@
                             }
                     echo "</div>
                   </div>";
-        }
-
+        }         ?>
+        </div>
+        <div class='paginaccion'>
+        <?php
+        if ($currentpage > 1) {
+            echo "<a href='{$_SERVER['PHP_SELF']}?currentpage=1'><<</a>";
+            $prevpage = $currentpage - 1;
+            echo "<a href='{$_SERVER['PHP_SELF']}?currentpage=$prevpage'><</a>";
+        } 
         $range = 3; //qtd de páginas disponíveis na paginação
         for($x = ($currentpage - $range); $x < (($currentpage + $range) + 1); $x++){
             if (($x > 0) && ($x <= $totalpages)) {
@@ -122,18 +129,7 @@
             echo "<a href='{$_SERVER['PHP_SELF']}?currentpage=$nextpage'>></a>";
             echo "<a href='{$_SERVER['PHP_SELF']}?currentpage=$totalpages'>>></a>";
         }
-        echo "</div>";
-        echo "<div class='paginacao'>";
-        if ($currentpage > 1) {
-            echo "<a href='{$_SERVER['PHP_SELF']}?currentpage=1'><<</a>";
-            $prevpage = $currentpage - 1;
-            echo "<a href='{$_SERVER['PHP_SELF']}?currentpage=$prevpage'><</a>";
-        } 
-         ?>
-        </section>
-    <?php   ?>
-    </div>
-    <main>
-     
-    </main>
+       ?>
+        </div>
+    </section>
 <?php @include 'footer.php'; ?>

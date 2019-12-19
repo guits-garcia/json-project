@@ -1,66 +1,71 @@
-* {
-  margin: 0;
+.profile-pics {
+  position: relative;
+  width: 46em;
+  height: 46em;
   padding: 0;
-  font-family: sans-serif;
+  border-radius: 50%;
+  list-style: none;
+  margin: 5em auto 0;
+  border: solid 5px palegoldenrod;
 }
 
-main {
-  width: 100vw;
+.profile-pics > * {
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 12em;
+  height: 10em;
+  margin: -5em;
 }
 
-main #posts {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  max-width: 1000px;
-  width: 100%;
-  margin: 0 auto;
+.profile-pics > *:nth-of-type(1) {
+  -webkit-transform: rotate(0deg) translate(23em) rotate(0deg);
+          transform: rotate(0deg) translate(23em) rotate(0deg);
 }
 
-main #posts > div:nth-child(odd) {
-  background-color: #dbd1d1;
+.profile-pics > *:nth-of-type(2) {
+  -webkit-transform: rotate(36deg) translate(23em) rotate(-36deg);
+          transform: rotate(36deg) translate(23em) rotate(-36deg);
 }
 
-main #posts .post {
-  margin: 10px 0;
+.profile-pics > *:nth-of-type(3) {
+  -webkit-transform: rotate(72deg) translate(23em) rotate(-72deg);
+          transform: rotate(72deg) translate(23em) rotate(-72deg);
 }
 
-main #posts .post .post-id-info {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
+.profile-pics > *:nth-of-type(4) {
+  -webkit-transform: rotate(108deg) translate(23em) rotate(-108deg);
+          transform: rotate(108deg) translate(23em) rotate(-108deg);
 }
 
-main #posts .post .post-title {
-  text-align: center;
-  font-weight: 700;
-  font-size: 32px;
+.profile-pics > *:nth-of-type(5) {
+  -webkit-transform: rotate(144deg) translate(23em) rotate(-144deg);
+          transform: rotate(144deg) translate(23em) rotate(-144deg);
 }
 
-main #posts .post .psot-content {
-  font-size: 16px;
-  margin-left: 10px;
+.profile-pics > *:nth-of-type(6) {
+  -webkit-transform: rotate(180deg) translate(23em) rotate(-180deg);
+          transform: rotate(180deg) translate(23em) rotate(-180deg);
 }
 
-main #posts .post .comentarios .comentario .comentario-info {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
+.profile-pics > *:nth-of-type(7) {
+  -webkit-transform: rotate(216deg) translate(23em) rotate(-216deg);
+          transform: rotate(216deg) translate(23em) rotate(-216deg);
+}
+
+.profile-pics > *:nth-of-type(8) {
+  -webkit-transform: rotate(252deg) translate(23em) rotate(-252deg);
+          transform: rotate(252deg) translate(23em) rotate(-252deg);
+}
+
+.profile-pics > *:nth-of-type(9) {
+  -webkit-transform: rotate(288deg) translate(23em) rotate(-288deg);
+          transform: rotate(288deg) translate(23em) rotate(-288deg);
+}
+
+.profile-pics > *:nth-of-type(10) {
+  -webkit-transform: rotate(324deg) translate(23em) rotate(-324deg);
+          transform: rotate(324deg) translate(23em) rotate(-324deg);
 }
 /*# sourceMappingURL=style.css.map */

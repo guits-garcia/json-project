@@ -8,20 +8,17 @@ function show_pics(x){
         var title = album.childNodes[3].children[0];
         if (x.classList[0] == "album-title"){
             album.childNodes[3].style.justifyContent = "space-between";
-            title.style.marginLeft = "50%"; //centra o título
-            title.style.transform = "translate(-50%)"; //centra o título
             close.style.display= "block"; //mostra o botão de fechar
-            album.style.width = "200%"; //aumenta a div
-            album.style.transform = "translate(-25%)"; //centra a div
-            photos.style.display = "flex"; //mostra as thumbnails e títulos
+            photos.style.height = "2432px"; //mostra as thumbnails e títulos
+            photos.style.visibility = "visible";
+            photos.style.opacity = "1";
         } else if (x.classList[0] == "close"){
             album.childNodes[3].style.justifyContent = "center"; //tudo aqui é pra reverter as mudanças feitas ali em cima
-            title.style.marginLeft = "0"; 
-            title.style.transform = "translate(0)"; 
             close.style.display= "none"; 
-            album.style.width = "100%"; 
-            album.style.transform = "translate(0%)"; 
-            photos.style.display = "none"; 
+            photos.style.visibility = "hidden";
+            photos.style.height = "0";
+            photos.style.opacity = "0";
+            
         }
     }
 }
@@ -175,3 +172,27 @@ function showComments(x){
    
 }
 //FUNÇÃO PARA MOSTRAR OS COMENTÁRIOS INDEX.PHP FIM //
+function layoutDynamic(x){
+x.style.top = "12%";
+x.style.left = "25%";
+x.parentNode.children[1].style.top = "5%";
+x.parentNode.children[2].style.top = "22%";
+x.parentNode.children[2].style.opacity = "1";
+x.parentNode.children[3].style.top = "30%";
+x.parentNode.children[3].style.opacity = "1";
+x.parentNode.children[4].style.top = "38%";
+x.parentNode.children[4].style.opacity = "1";
+x.parentNode.children[5].style.zIndex = "1";
+x.parentNode.children[5].style.opacity = "1";
+x.parentNode.children[5].style.top = "12%";
+x.parentNode.children[5].style.left = "85%";
+}
+
+//FUNÇÃO PARA O BACKGROUND IMAGE EM AUTOR LIST INICIO //
+    function getYoUrl(x){
+        var img_url = x.src;
+        console.log(img_url);
+        var profile_pics = document.getElementsByClassName('profile-pics')[0];
+        profile_pics.style.backgroundImage = `url(${img_url})`;
+    }
+//FUNÇÃO PARA O BACKGROUND IMAGE EM AUTOR LIST INICIO //

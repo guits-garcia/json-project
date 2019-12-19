@@ -29,6 +29,19 @@ body {
   height: 100%;
   background-color: lightgray;
   padding-top: 40px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 #posts-wrap #posts {
@@ -228,6 +241,10 @@ body {
   text-align: center;
 }
 
+#posts-wrap .paginaccion {
+  font-size: 22px;
+}
+
 #autor-page {
   max-width: 700px;
   width: 100%;
@@ -413,6 +430,297 @@ body {
   height: 150px;
 }
 
+#autor-portfl {
+  width: 100%;
+  height: 100vh;
+}
+
+#autor-portfl .img-bg {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  background-color: #e4e4e4;
+}
+
+#autor-portfl .img-bg .facepic {
+  height: 680px;
+  width: 330px;
+  position: absolute;
+  top: 5%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -5%);
+          transform: translate(-50%, -5%);
+  -o-object-position: center;
+     object-position: center;
+  -o-object-fit: none;
+     object-fit: none;
+  -webkit-filter: drop-shadow(2px 4px 6px black);
+          filter: drop-shadow(2px 4px 6px black);
+  -webkit-transition: left 600ms, top 400ms 600ms;
+  transition: left 600ms, top 400ms 600ms;
+}
+
+#autor-portfl .img-bg .portfl-name {
+  -webkit-transition: all 600ms ease 200ms;
+  transition: all 600ms ease 200ms;
+  font-family: 'Titillium Web', sans-serif;
+  font-size: 60px;
+  font-weight: 700;
+  position: absolute;
+  top: 80%;
+  left: 55%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+}
+
+#autor-portfl .img-bg .companypic {
+  position: absolute;
+  top: 80%;
+  left: 55%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  opacity: 0;
+  -webkit-transition: all 600ms ease 200ms;
+  transition: all 600ms ease 200ms;
+}
+
+#autor-portfl .img-bg .portfl-company {
+  -webkit-transition: all 600ms ease 200ms;
+  transition: all 600ms ease 200ms;
+  position: absolute;
+  top: 80%;
+  left: 55%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  font-size: 50px;
+  opacity: 0;
+  background: linear-gradient(45deg, #a7a706, #464545);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 3px 3px 10px black;
+}
+
+#autor-portfl .img-bg .portfl-catch {
+  -webkit-transition: all 600ms ease 200ms;
+  transition: all 600ms ease 200ms;
+  position: absolute;
+  top: 80%;
+  left: 55%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  opacity: 0;
+}
+
+#autor-portfl .img-bg .portfl-albuns {
+  height: 680px;
+  width: 330px;
+  background-color: lightgrey;
+  position: absolute;
+  z-index: -1;
+  opacity: 0;
+  top: 5%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -5%);
+          transform: translate(-50%, -5%);
+  -webkit-transition: left 600ms, top 400ms 600ms, opacity 600ms;
+  transition: left 600ms, top 400ms 600ms, opacity 600ms;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-filter: drop-shadow(2px 4px 6px black);
+          filter: drop-shadow(2px 4px 6px black);
+}
+
+#autor-portfl .img-bg .portfl-albuns .portfl-photo {
+  width: 120px;
+  height: 120px;
+  -webkit-filter: sepia(0.75);
+          filter: sepia(0.75);
+}
+
+#album-page {
+  width: 100vw;
+  height: 100vh;
+}
+
+#album-page .list-autors {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#album-page .list-autors a {
+  font-family: 'Titillium Web', sans-serif;
+  text-align: center;
+  margin: 30px 0;
+  font-size: 60px;
+  font-weight: 700;
+}
+
+#album-page h1 {
+  font-family: 'Titillium Web', sans-serif;
+  text-align: center;
+  margin: 30px 0;
+  font-size: 60px;
+  font-weight: 700;
+}
+
+#album-page .album-wrapper {
+  max-width: 1180px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+#album-page .album-wrapper > div:nth-child(odd) {
+  background-color: #e9e5e5;
+}
+
+#album-page .album-wrapper > div:nth-child(even) {
+  background-color: lightgray;
+}
+
+#album-page .album-wrapper .album {
+  -webkit-transition: all 450ms;
+  transition: all 450ms;
+}
+
+#album-page .album-wrapper .album p {
+  text-align: center;
+}
+
+#album-page .album-wrapper .album .title-x {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+#album-page .album-wrapper .album .title-x .close {
+  font-size: 60px;
+  line-height: 21px;
+  padding-right: 15px;
+  color: #888888;
+  display: none;
+  cursor: pointer;
+}
+
+#album-page .album-wrapper .album .title-x .close:hover {
+  color: black;
+}
+
+#album-page .album-wrapper .album .title-x .album-title {
+  cursor: pointer;
+  font-family: 'Titillium Web', sans-serif;
+  text-transform: uppercase;
+  font-size: 22px;
+  padding-bottom: 20px;
+  text-align: center;
+  width: 100%;
+}
+
+#album-page .album-wrapper .album .title-x .album-title:hover {
+  color: #888888;
+}
+
+#album-page .album-wrapper .album .photos {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  visibility: hidden;
+  height: 0;
+  -webkit-transition: height 1s, opacity 600ms ease 1s;
+  transition: height 1s, opacity 600ms ease 1s;
+  opacity: 0;
+}
+
+#album-page .album-wrapper .album .photos .photo {
+  margin: 0 5px;
+}
+
+#album-page .album-wrapper .album .photos .photo .thumbnail:hover {
+  -webkit-animation: shake 0.5s;
+          animation: shake 0.5s;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+}
+
+@keyframes shake {
+  0% {
+    -webkit-transform: translate(1px, 1px) rotate(0deg);
+            transform: translate(1px, 1px) rotate(0deg);
+  }
+  10% {
+    -webkit-transform: translate(-1px, -2px) rotate(-1deg);
+            transform: translate(-1px, -2px) rotate(-1deg);
+  }
+  20% {
+    -webkit-transform: translate(-3px, 0px) rotate(1deg);
+            transform: translate(-3px, 0px) rotate(1deg);
+  }
+  30% {
+    -webkit-transform: translate(3px, 2px) rotate(0deg);
+            transform: translate(3px, 2px) rotate(0deg);
+  }
+  40% {
+    -webkit-transform: translate(1px, -1px) rotate(1deg);
+            transform: translate(1px, -1px) rotate(1deg);
+  }
+  50% {
+    -webkit-transform: translate(-1px, 2px) rotate(-1deg);
+            transform: translate(-1px, 2px) rotate(-1deg);
+  }
+  60% {
+    -webkit-transform: translate(-3px, 1px) rotate(0deg);
+            transform: translate(-3px, 1px) rotate(0deg);
+  }
+  70% {
+    -webkit-transform: translate(3px, 1px) rotate(-1deg);
+            transform: translate(3px, 1px) rotate(-1deg);
+  }
+  80% {
+    -webkit-transform: translate(-1px, -1px) rotate(1deg);
+            transform: translate(-1px, -1px) rotate(1deg);
+  }
+  90% {
+    -webkit-transform: translate(1px, 2px) rotate(0deg);
+            transform: translate(1px, 2px) rotate(0deg);
+  }
+  100% {
+    -webkit-transform: translate(1px, -2px) rotate(-1deg);
+            transform: translate(1px, -2px) rotate(-1deg);
+  }
+}
+
+#album-page .album-wrapper .album .photos .photo p {
+  width: 150px;
+  height: 150px;
+}
+
 #modal {
   display: none;
   position: fixed;
@@ -507,8 +815,6 @@ body {
 }
 
 #autor-list .profile-pics {
-  max-width: 900px;
-  width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -518,6 +824,10 @@ body {
       -ms-flex-pack: center;
           justify-content: center;
   margin: 0 auto;
+  background-size: cover;
+  background-position: center;
+  -webkit-transition: all 800ms;
+  transition: all 800ms;
 }
 
 #autor-list .profile-pics > div:nth-child(odd) {
@@ -529,30 +839,22 @@ body {
 }
 
 #autor-list .profile-pics .profile-pic {
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
-  margin: 15px;
-  margin-bottom: 20px;
   border-radius: 47%;
-  position: relative;
   text-align: center;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
 }
 
 #autor-list .profile-pics .profile-pic img {
   width: 200px;
   height: auto;
   border-radius: 50%;
+  margin-left: -4px;
+  -webkit-filter: contrast(0.6);
+          filter: contrast(0.6);
+}
+
+#autor-list .profile-pics .profile-pic img:hover {
+  -webkit-filter: none;
+          filter: none;
 }
 
 #autor-list .profile-pics .profile-pic a {
@@ -591,6 +893,11 @@ body {
   -webkit-transition: opacity 600ms ease 100ms;
   transition: opacity 600ms ease 100ms;
   bottom: -35px;
+}
+
+.login {
+  width: 200px;
+  height: 300px;
 }
 
 #sidenav-tarefas {
@@ -749,45 +1056,123 @@ body {
           align-items: center;
 }
 
-#header_certo .header-wrapper .posts {
+#header_certo .header-wrapper .albums, #header_certo .header-wrapper .posts, #header_certo .header-wrapper .usuarios {
   width: 240px;
   height: 100%;
   background-color: white;
   -webkit-box-shadow: 4px 4px silver;
           box-shadow: 4px 4px silver;
+  position: relative;
+  overflow-x: hidden;
+  opacity: 0.99;
 }
 
-#header_certo .header-wrapper .posts a {
+#header_certo .header-wrapper .albums:before, #header_certo .header-wrapper .posts:before, #header_certo .header-wrapper .usuarios:before {
+  content: "";
+  background-color: gold;
+  opacity: 0.6;
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  -webkit-transform: translateX(-100%);
+          transform: translateX(-100%);
+  -webkit-transition: 450ms -webkit-transform;
+  transition: 450ms -webkit-transform;
+  transition: 450ms transform;
+  transition: 450ms transform, 450ms -webkit-transform;
+}
+
+#header_certo .header-wrapper .albums:hover:before, #header_certo .header-wrapper .posts:hover:before, #header_certo .header-wrapper .usuarios:hover:before {
+  -webkit-transform: translateX(0);
+          transform: translateX(0);
+}
+
+#header_certo .header-wrapper .albums a, #header_certo .header-wrapper .posts a, #header_certo .header-wrapper .usuarios a {
   font-family: 'Girassol', cursive;
   font-size: 55px;
   padding: 2px;
 }
 
-#header_certo .header-wrapper .usuarios {
-  width: 240px;
-  height: 100%;
-  background-color: white;
-  -webkit-box-shadow: 4px 4px silver;
-          box-shadow: 4px 4px silver;
+#header_certo .header-wrapper .albums.atual, #header_certo .header-wrapper .posts.atual, #header_certo .header-wrapper .usuarios.atual {
+  background-color: black;
+  border: 1px solid silver;
 }
 
-#header_certo .header-wrapper .usuarios a {
-  font-family: 'Girassol', cursive;
-  font-size: 55px;
-  padding: 2px;
+#header_certo .header-wrapper .albums.atual a, #header_certo .header-wrapper .posts.atual a, #header_certo .header-wrapper .usuarios.atual a {
+  color: gold;
 }
 
-#header_certo .header-wrapper .albums {
-  width: 240px;
-  height: 100%;
-  background-color: white;
-  -webkit-box-shadow: 4px 4px silver;
-          box-shadow: 4px 4px silver;
+.profile-pics {
+  position: relative;
+  width: 46em;
+  height: 46em;
+  padding: 0;
+  border-radius: 50%;
+  list-style: none;
+  margin: 5em auto 0;
+  border: solid 5px palegoldenrod;
 }
 
-#header_certo .header-wrapper .albums a {
-  font-family: 'Girassol', cursive;
-  font-size: 55px;
-  padding: 2px;
+.profile-pics > * {
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 12em;
+  height: 10em;
+  margin: -5em;
+}
+
+.profile-pics > *:nth-of-type(1) {
+  -webkit-transform: rotate(0deg) translate(23em) rotate(0deg);
+          transform: rotate(0deg) translate(23em) rotate(0deg);
+}
+
+.profile-pics > *:nth-of-type(2) {
+  -webkit-transform: rotate(36deg) translate(23em) rotate(-36deg);
+          transform: rotate(36deg) translate(23em) rotate(-36deg);
+}
+
+.profile-pics > *:nth-of-type(3) {
+  -webkit-transform: rotate(72deg) translate(23em) rotate(-72deg);
+          transform: rotate(72deg) translate(23em) rotate(-72deg);
+}
+
+.profile-pics > *:nth-of-type(4) {
+  -webkit-transform: rotate(108deg) translate(23em) rotate(-108deg);
+          transform: rotate(108deg) translate(23em) rotate(-108deg);
+}
+
+.profile-pics > *:nth-of-type(5) {
+  -webkit-transform: rotate(144deg) translate(23em) rotate(-144deg);
+          transform: rotate(144deg) translate(23em) rotate(-144deg);
+}
+
+.profile-pics > *:nth-of-type(6) {
+  -webkit-transform: rotate(180deg) translate(23em) rotate(-180deg);
+          transform: rotate(180deg) translate(23em) rotate(-180deg);
+}
+
+.profile-pics > *:nth-of-type(7) {
+  -webkit-transform: rotate(216deg) translate(23em) rotate(-216deg);
+          transform: rotate(216deg) translate(23em) rotate(-216deg);
+}
+
+.profile-pics > *:nth-of-type(8) {
+  -webkit-transform: rotate(252deg) translate(23em) rotate(-252deg);
+          transform: rotate(252deg) translate(23em) rotate(-252deg);
+}
+
+.profile-pics > *:nth-of-type(9) {
+  -webkit-transform: rotate(288deg) translate(23em) rotate(-288deg);
+          transform: rotate(288deg) translate(23em) rotate(-288deg);
+}
+
+.profile-pics > *:nth-of-type(10) {
+  -webkit-transform: rotate(324deg) translate(23em) rotate(-324deg);
+          transform: rotate(324deg) translate(23em) rotate(-324deg);
 }
 /*# sourceMappingURL=style2.css.map */
