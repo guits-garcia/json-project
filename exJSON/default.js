@@ -189,10 +189,182 @@ x.parentNode.children[5].style.left = "85%";
 }
 
 //FUNÇÃO PARA O BACKGROUND IMAGE EM AUTOR LIST INICIO //
-    function getYoUrl(x){
+var startPos = 582;    
+var passo = 50;
+function getYoUrl(x){
         var img_url = x.src;
-        console.log(img_url);
-        var profile_pics = document.getElementsByClassName('profile-pics')[0];
-        profile_pics.style.backgroundImage = `url(${img_url})`;
+        // console.log(img_url);
+        // var profile_pics = document.getElementsByClassName('middle-img')[0];
+        var movingPic = document.getElementsByClassName('middle-img-behind')[0];
+        movingPic.src = img_url;
+        movingPic.style.opacity = 1;
+        movingPic.style.left = `${startPos}px`;
+        startPos = startPos - passo;
+        if (startPos <= -25){
+            passo *= -1;
+        } else if (startPos >= 583){
+            passo *= -1;
+        }
+        console.log(startPos);
+        // movingPic.style.left = "120px";
+    }
+    function hideYoImg(x){
+        var img_url = x.src;
+        var movingPic = document.getElementsByClassName('middle-img-behind')[0];
+        movingPic.style.opacity = 0;
     }
 //FUNÇÃO PARA O BACKGROUND IMAGE EM AUTOR LIST INICIO //
+
+
+// var texts = document.getElementsByClassName('album-anchor')[0].textContent;
+// document.getElementsByClassName('album-anchor')[0].classList.add('effect');
+if (document.getElementsByClassName('album-anchor')){
+    function type(){
+        if (count === texts.length){
+            count = 0;
+        }
+        currentText = texts;
+        letter = currentText.slice(0, ++index);
+        document.getElementsByClassName('album-anchor')[indexAutor].textContent = letter;
+        if (letter.length === currentText.length){
+            count++;
+            index = 0;
+            indexAutor++;
+            if  (indexAutor >= document.getElementsByClassName('album-anchor').length ) {
+                indexAutor = 0;
+            } else if ( indexAutor < 0 ){
+               indexAutor = document.getElementsByClassName('album-anchor').length;
+            }
+            autorDaVez = document.getElementsByClassName('album-anchor')[indexAutor];
+            texts = document.getElementsByClassName('album-anchor')[indexAutor].textContent;
+        }
+        setTimeout(type,200);
+       };
+       
+    function type1(){
+        this.indexAutor = 0;
+        this.autorDaVez = document.getElementsByClassName('album-anchor')[indexAutor];
+        this.tempo_sorteado = Math.floor(Math.random() * (600 - 300 + 1)) + 300;
+        this.texts = document.getElementsByClassName('album-anchor')[indexAutor].textContent;
+        this.count = 0;
+        this.index = 0;
+        this.currentText = '';
+        this.letter = '';
+        type();
+    }
+    type1();
+    
+}
+
+
+//funçào popup index //
+
+function abrirPopUp(x){
+    if(x.dataset.after == 'veja comentários..'){
+    // document.querySelector('.popup-blog').style.display = 'inline-flex';
+    document.querySelector('.popup-blog').style.transform = 'translate(-50%,-50%)';
+    document.querySelector('.popup-blog').style.left = '50%';
+    // document.querySelector('.popup-blog').style.animation = 'rotation 2s linear';
+    var conteudo = x.textContent; //pega tudo o que está escrito
+    var conteudo_separado = conteudo.split(":"); //separa onde tem dois pontos, [1] é o id
+    // var botarAqui = document.querySelector('#autor-id-blog');
+    // botarAqui.innerText = conteudo_separado[1];
+    var numero_id = conteudo_separado[1].replace(/\s+/g, '');
+    
+    $(document).ready(function(){
+        var Url =`https://jsonplaceholder.typicode.com/posts?id=${numero_id}`;
+        $.ajax({
+            url:Url,
+            type:"GET",
+            success: function(result){
+               const output = result;
+                console.log(output[0]['id']);
+               const popUp = document.querySelector('.popup-blog');
+               popUp.innerHTML += `<div class='post'>
+                                        <div class='post-stuff'>
+                                            <div class='post-info'>
+                                                <p>post número ${output[0]['id']} </p>
+                                                <div class="fechar-popup" onclick='abrirPopUp(this)'>&times;</div>
+                                            </div>
+                                        
+                                        <p class='title'>${output[0]['title']}</p>
+                                       `;
+
+               
+                $(document).ready(function(){
+                    var Url =`https://jsonplaceholder.typicode.com/users?id=${output[0]['userId']}`;
+                    $.ajax({
+                        url:Url,
+                        type:"GET",
+                        success: function(result){
+                            popUp.innerHTML += `<a class='autor' href='autor-portfl.php?autor-id=${output[0]['userId']}'>Escrito por ${result[0]['name']}</p>`;
+                            popUp.innerHTML += `<p class='content'>${output[0]['body']}</p>
+                                                </div>`;
+                                                
+
+      
+                                                $(document).ready(function(){
+                                                    var Url =`https://jsonplaceholder.typicode.com/comments?postId=${numero_id}`;
+                                                    $.ajax({
+                                                        url:Url,
+                                                        type:"GET",
+                                                        success: function(result){
+                                                            popUp.innerHTML += `<div class='comentarios'>
+                                                            <p> COMENTÁRIOS </p>`;
+                                                           
+                                                            function myFunction(item){
+                                                                popUp.innerHTML += `
+                                                                                   
+                                                                                        
+                                                                                        <hr>
+                                                                                        <div class='comentario'>
+                                                                                        <div class='comentario-info'>
+                                                                                            <p>${item['email']} diz:</p>
+                                                                                        </div>
+                                                                                        <div class='comentario-conteudo'>
+                                                                                            <p> ${item['name']} </p>
+                                                                                            <p> ${item['body']} </p>
+                                                                                        </div>
+                                                                                    </div>`;
+                                                            }
+                                                            result.forEach(myFunction);
+                                                            popUp.innerHTML +=`</div>`;
+                                                        },
+                                                        error: function(result){
+                                                            console.error(result);
+                                                        }
+                                                    })
+                                                });
+                                            
+
+
+
+
+
+
+
+                        },
+                        error: function(result){
+                            console.error(result);
+                        }
+                    })
+                });
+
+            },
+            error:function(error){
+                console.log(`Error ${error}`);
+            }
+        })
+    })
+    }else if (x.classList[0] == 'fechar-popup'){
+        document.querySelector('.popup-blog').style.transform = ' rotate(0) translate(-100%,-50%)';
+        document.querySelector('.popup-blog').style.left = '0';
+        document.querySelector('.popup-blog').style.animation = 'none';
+        document.querySelector('.popup-blog').innerHTML = "";
+    }
+       
+   
+  
+}
+
+

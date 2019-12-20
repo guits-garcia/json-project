@@ -245,6 +245,119 @@ body {
   font-size: 22px;
 }
 
+@-webkit-keyframes rotation {
+  from {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(359deg);
+            transform: rotate(359deg);
+  }
+}
+
+@keyframes rotation {
+  from {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(359deg);
+            transform: rotate(359deg);
+  }
+}
+
+#posts-wrap .popup-blog {
+  -webkit-transition: all 600ms;
+  transition: all 600ms;
+  position: absolute;
+  z-index: 3;
+  left: 0;
+  top: 50%;
+  -webkit-transform: translate(-100%, -50%);
+          transform: translate(-100%, -50%);
+  width: 820px;
+  height: 730px;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 1.6rem 3rem;
+  border: 3px solid black;
+  border-radius: 5px;
+  background: white;
+  -webkit-box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.2);
+          box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+#posts-wrap .popup-blog .post {
+  width: 100%;
+}
+
+#posts-wrap .popup-blog .post .post-stuff {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+#posts-wrap .popup-blog .post .post-stuff .post-info {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+#posts-wrap .popup-blog .post .post-stuff .post-info .fechar-popup {
+  font-size: 40px;
+}
+
+#posts-wrap .popup-blog .post .post-stuff .title {
+  font-size: 35px;
+  line-height: 35px;
+  text-align: center;
+  margin: 10px;
+  text-transform: uppercase;
+  font-family: 'Poppins', sans-serif;
+}
+
+#posts-wrap .popup-blog .autor {
+  font-family: 'Poppins', sans-serif;
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+#posts-wrap .popup-blog .content {
+  font-size: 22px;
+}
+
+#posts-wrap .popup-blog .comentarios {
+  width: 100%;
+  padding: 12px;
+}
+
+#posts-wrap .popup-blog .comentarios p {
+  font-size: 20px;
+}
+
+#posts-wrap .popup-blog hr {
+  width: 100%;
+  height: 3px;
+}
+
 #autor-page {
   max-width: 700px;
   width: 100%;
@@ -551,7 +664,31 @@ body {
 
 #album-page {
   width: 100vw;
-  height: 100vh;
+  height: 100%;
+  background-color: #f2eecb;
+  background-image: linear-gradient(45deg, #ffd966 25%, transparent 25%, transparent 75%, #ffd966 75%, #ffd966), linear-gradient(-45deg, #ffd966 25%, transparent 25%, transparent 75%, #ffd966 75%, #ffd966);
+  background-size: 60px 60px;
+  background-position: 0 0;
+  -webkit-animation: slide 4s infinite linear;
+          animation: slide 4s infinite linear;
+}
+
+@-webkit-keyframes slide {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: -120px 60px;
+  }
+}
+
+@keyframes slide {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: -120px 60px;
+  }
 }
 
 #album-page .list-autors {
@@ -562,23 +699,75 @@ body {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: start;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  max-width: 1100px;
+  width: 100%;
+  height: 600px;
+  margin: 0 auto;
+  padding-bottom: calc(87.5vh - 675px);
+  padding-top: calc(87.5vh - 675px);
 }
 
-#album-page .list-autors a {
-  font-family: 'Titillium Web', sans-serif;
+#album-page .list-autors .album-anchor {
+  font-family: 'Libre Baskerville', serif;
   text-align: center;
   margin: 30px 0;
-  font-size: 60px;
+  font-size: 35px;
   font-weight: 700;
+  position: relative;
+  z-index: 5;
+  text-align: left;
+  width: 500px;
+}
+
+#album-page .list-autors .album-anchor:before {
+  content: attr(data-before);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 500px;
+  font-weight: 700;
+  color: white;
+  text-align: left;
+  z-index: -1;
+  text-shadow: 1px 1px 2px black;
+}
+
+@-webkit-keyframes blink {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes blink {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
 }
 
 #album-page h1 {
   font-family: 'Titillium Web', sans-serif;
   text-align: center;
-  margin: 30px 0;
+  padding: 30px 0;
   font-size: 60px;
   font-weight: 700;
 }
@@ -590,11 +779,11 @@ body {
 }
 
 #album-page .album-wrapper > div:nth-child(odd) {
-  background-color: #e9e5e5;
+  background-image: linear-gradient(45deg, transparent, lightgoldenrodyellow);
 }
 
 #album-page .album-wrapper > div:nth-child(even) {
-  background-color: lightgray;
+  background-image: linear-gradient(45deg, lightgoldenrodyellow, transparent);
 }
 
 #album-page .album-wrapper .album {
@@ -806,12 +995,15 @@ body {
 
 #autor-list {
   width: 100%;
-  background-image: linear-gradient(45deg, aliceblue, transparent);
+  background-color: #f2eecb;
   padding-top: 40px;
+  height: 100vh;
 }
 
 #autor-list h1 {
   text-align: center;
+  padding-bottom: 30px;
+  font-family: 'Poppins', sans-serif;
 }
 
 #autor-list .profile-pics {
@@ -826,8 +1018,9 @@ body {
   margin: 0 auto;
   background-size: cover;
   background-position: center;
-  -webkit-transition: all 800ms;
-  transition: all 800ms;
+  max-width: 1000px;
+  width: 100%;
+  position: relative;
 }
 
 #autor-list .profile-pics > div:nth-child(odd) {
@@ -838,16 +1031,68 @@ body {
   background-color: aliceblue;
 }
 
+#autor-list .profile-pics .esquerda {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+#autor-list .profile-pics .middle-img {
+  width: 1050px;
+  height: 295px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
+  -webkit-transition: 800ms all;
+  transition: 800ms all;
+}
+
+#autor-list .profile-pics .middle-img-behind {
+  position: absolute;
+  width: 443px;
+  top: 204px;
+  left: 200px;
+  opacity: 0;
+  -webkit-filter: drop-shadow(black 2px 4px 6px);
+          filter: drop-shadow(black 2px 4px 6px);
+  -webkit-transition: all 600ms;
+  transition: all 600ms;
+}
+
+#autor-list .profile-pics .direita {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
 #autor-list .profile-pics .profile-pic {
-  border-radius: 47%;
+  width: 200px;
+  height: 200px;
+  border: 2px solid black;
+  margin: 0 3px 0;
   text-align: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 #autor-list .profile-pics .profile-pic img {
   width: 200px;
   height: auto;
-  border-radius: 50%;
-  margin-left: -4px;
   -webkit-filter: contrast(0.6);
           filter: contrast(0.6);
 }
@@ -858,6 +1103,7 @@ body {
 }
 
 #autor-list .profile-pics .profile-pic a {
+  font-family: 'Poppins', sans-serif;
   text-align: center;
   margin: 5px;
   padding: 0;
@@ -1103,76 +1349,5 @@ body {
 
 #header_certo .header-wrapper .albums.atual a, #header_certo .header-wrapper .posts.atual a, #header_certo .header-wrapper .usuarios.atual a {
   color: gold;
-}
-
-.profile-pics {
-  position: relative;
-  width: 46em;
-  height: 46em;
-  padding: 0;
-  border-radius: 50%;
-  list-style: none;
-  margin: 5em auto 0;
-  border: solid 5px palegoldenrod;
-}
-
-.profile-pics > * {
-  display: block;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 12em;
-  height: 10em;
-  margin: -5em;
-}
-
-.profile-pics > *:nth-of-type(1) {
-  -webkit-transform: rotate(0deg) translate(23em) rotate(0deg);
-          transform: rotate(0deg) translate(23em) rotate(0deg);
-}
-
-.profile-pics > *:nth-of-type(2) {
-  -webkit-transform: rotate(36deg) translate(23em) rotate(-36deg);
-          transform: rotate(36deg) translate(23em) rotate(-36deg);
-}
-
-.profile-pics > *:nth-of-type(3) {
-  -webkit-transform: rotate(72deg) translate(23em) rotate(-72deg);
-          transform: rotate(72deg) translate(23em) rotate(-72deg);
-}
-
-.profile-pics > *:nth-of-type(4) {
-  -webkit-transform: rotate(108deg) translate(23em) rotate(-108deg);
-          transform: rotate(108deg) translate(23em) rotate(-108deg);
-}
-
-.profile-pics > *:nth-of-type(5) {
-  -webkit-transform: rotate(144deg) translate(23em) rotate(-144deg);
-          transform: rotate(144deg) translate(23em) rotate(-144deg);
-}
-
-.profile-pics > *:nth-of-type(6) {
-  -webkit-transform: rotate(180deg) translate(23em) rotate(-180deg);
-          transform: rotate(180deg) translate(23em) rotate(-180deg);
-}
-
-.profile-pics > *:nth-of-type(7) {
-  -webkit-transform: rotate(216deg) translate(23em) rotate(-216deg);
-          transform: rotate(216deg) translate(23em) rotate(-216deg);
-}
-
-.profile-pics > *:nth-of-type(8) {
-  -webkit-transform: rotate(252deg) translate(23em) rotate(-252deg);
-          transform: rotate(252deg) translate(23em) rotate(-252deg);
-}
-
-.profile-pics > *:nth-of-type(9) {
-  -webkit-transform: rotate(288deg) translate(23em) rotate(-288deg);
-          transform: rotate(288deg) translate(23em) rotate(-288deg);
-}
-
-.profile-pics > *:nth-of-type(10) {
-  -webkit-transform: rotate(324deg) translate(23em) rotate(-324deg);
-          transform: rotate(324deg) translate(23em) rotate(-324deg);
 }
 /*# sourceMappingURL=style2.css.map */

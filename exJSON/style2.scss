@@ -180,6 +180,81 @@ body {
         .paginaccion{
             font-size:22px;
         }
+
+        @keyframes rotation {
+            from {
+                   transform: rotate(0deg);
+            }
+            to {
+                    transform: rotate(359deg);
+            }
+    }
+        .popup-blog {
+
+            transition: all 600ms;
+            position: absolute;
+            z-index:3;
+            left: 0; // 50%;
+            top: 50%;
+            transform: translate(-100%,-50%); // translate(-50%, -50%);
+            width:820px;
+            height:730px;
+            
+            
+            // display: none;
+            flex-direction: column;
+            align-items: center;
+            padding: 1.6rem 3rem;
+            border: 3px solid black;
+            border-radius: 5px;
+            background: white;
+            box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.2);
+            .post{
+                width:100%;
+                .post-stuff{
+                    width:100%;
+                    display:flex;
+                    flex-direction:column;
+                    justify-content: space-between;
+                    .post-info{
+                        width:100%;
+                        display:flex;
+                        justify-content: space-between;
+                        .fechar-popup{
+                            font-size:40px;
+                        }
+                    }
+                    .title{
+                        font-size:35px;
+                        line-height:35px;
+                        text-align:center;
+                        margin:10px;
+                        text-transform: uppercase;
+                        font-family: 'Poppins', sans-serif;
+                    }
+                }
+                
+            }
+            .autor{
+                font-family: 'Poppins', sans-serif;
+                font-size:16px;
+                margin-bottom:5px;
+            }
+            .content{
+                font-size:22px;
+            }
+            .comentarios{
+                width:100%;
+                padding:12px;
+              p{
+                  font-size:20px;
+              }
+            }
+            hr{
+                width:100%;
+                height:3px;
+            }
+          }
     }
     
 
@@ -360,24 +435,99 @@ body {
 
     #album-page{
         width:100vw;
-        height:100vh;
+        height:100%;
+        background-color:#f2eecb;
+        background-image: linear-gradient(
+            45deg,
+            #ffd966 25%,
+            transparent 25%,
+            transparent 75%,
+            #ffd966 75%,
+            #ffd966
+            ),
+            linear-gradient(
+            -45deg,
+            #ffd966 25%,
+            transparent 25%,
+            transparent 75%,
+            #ffd966 75%,
+            #ffd966
+            );
+            background-size: 60px 60px;
+            background-position: 0 0;
+            animation: slide 4s infinite linear;
+            @keyframes slide {
+                from {
+                  background-position: 0 0;
+                }
+              
+                to {
+                  background-position: -120px 60px;
+                }
+              }
         .list-autors{
             display:flex;
             flex-direction:column;
-            align-items: center;
-            a{
-                font-family: 'Titillium Web', sans-serif;
+            justify-content: space-between;
+            align-items:start;
+            flex-wrap:wrap;
+            max-width: 1100px;
+            width:100%;
+            height:600px;
+            margin:0 auto;
+            padding-bottom: calc(87.5vh - 675px);
+            padding-top: calc(87.5vh - 675px);
+            .album-anchor{
+                font-family: 'Libre Baskerville', serif;
                 text-align: center;
                 margin:30px 0;
-                font-size:60px;
+                font-size:35px;
                 font-weight:700;
+                position:relative;
+                z-index:5;
+                text-align:left;
+                width:500px;
+                &:before{
+                    content:attr(data-before);
+                    position:absolute;
+                    top:0;
+                    left:0;
+                    width:500px;
+                    font-weight:700;
+                    color:white;
+                    text-align:left;
+                    z-index:-1;
+                    text-shadow:1px 1px 2px black;
+                }
+            }
+
+            .effect:after{
+                // content: "";
+                // position:absolute;
+                // border-right:4px solid black;
+                // width:1px;
+                // height:55%;
+                // top:14px;
+                // right: -8px;
+                // animation: blink 1s infinite ease;
+            }
+            @keyframes blink{
+                0%{
+                    opacity:0;
+                }
+                50%{
+                    opacity:1
+                }
+                100%{
+                    opacity:0;
+                }
             }
         }
        
         h1{
             font-family: 'Titillium Web', sans-serif;
             text-align: center;
-            margin:30px 0;
+            padding:30px 0;
             font-size:60px;
             font-weight:700;
         }
@@ -386,10 +536,10 @@ body {
             width:100%;
             margin:0 auto;
             > div:nth-child(odd){
-                background-color:rgb(233, 229, 229);
+                background-image:linear-gradient(45deg,transparent,lightgoldenrodyellow);
             }
             > div:nth-child(even){
-                background-color:rgb(211, 211, 211);
+                background-image:linear-gradient(45deg,lightgoldenrodyellow,transparent);
             }
             .album{
                 transition: all 450ms;
@@ -525,10 +675,13 @@ body {
 
     #autor-list{
         width:100%;
-        background-image:linear-gradient(45deg,aliceblue,transparent);
+        background-color:#f2eecb;
         padding-top:40px;
+        height:100vh;
         h1{
             text-align:center;
+            padding-bottom:30px;
+            font-family: 'Poppins', sans-serif;
         }
         .profile-pics{
             // max-width:900px;
@@ -539,34 +692,61 @@ body {
             margin:0 auto;
             background-size:cover;
             background-position:center;
-            transition:all 800ms;
+            max-width:1000px;
+            width:100%;
+            position:relative;
             > div:nth-child(odd){
                 background-color:lightgrey;
             }
             > div:nth-child(even){
                 background-color:aliceblue;
             }
+            .esquerda{
+                display:flex;
+                justify-content: center;
+            }
+            .middle-img{
+                width:1050px;
+                height:295px;
+                object-fit:cover;
+                object-position:center;
+                transition:800ms all;
+            }
+            .middle-img-behind{
+                position:absolute;
+                width:443px;
+                top:204px;
+                left:200px;
+                opacity:0;
+                filter:drop-shadow(black 2px 4px 6px);
+                transition: all 600ms;
+            }
+            .direita{
+                display:flex;
+                justify-content: center;
+            }
             .profile-pic{
-                // width:fit-content; //232
-                // margin:15px;
-                // margin-bottom:20px;
-                border-radius:47%; //48;
-                // position:relative;
+                width:200px; //232
+                height:200px;
+                border:2px solid black;
+                margin:0 3px 0;
                 text-align:center;
-                // display:flex;
-                // flex-direction:column;
+                display:flex;
+                flex-direction:column;
+                align-items: center;
                 // justify-content:center;
                 img{
                     width:200px; //207
                     height:auto;
-                    border-radius:50%;
-                    margin-left:-4px;
+                    // border-radius:50%;
+                    
                     filter: contrast(0.6);
                     &:hover{
                         filter:none;
                     }
                 }
                 a{
+                    font-family: 'Poppins', sans-serif;
                     text-align:center;
                     margin:5px;
                     padding:0;

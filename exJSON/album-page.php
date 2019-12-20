@@ -59,7 +59,7 @@
     curl_close($cr);
     echo "<div class='list-autors'>";
     foreach ($usuarios as $usuario){
-        echo "<a href='album-page.php?autor-id=$usuario->id'>$usuario->name</a>";
+        echo "<a class='album-anchor' data-before='$usuario->name' href='album-page.php?autor-id=$usuario->id'>$usuario->name</a>";
     }
     echo "</div>";
 }

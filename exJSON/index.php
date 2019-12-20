@@ -39,8 +39,6 @@
 
 <div id="posts">
         <?php 
-        // echo "<pre>";
-        // print_r($posts[0]);
         if ( ($offset + $posts_per_page) <= $posts_number){
             $limite_superior = $offset + $posts_per_page;
         } else {
@@ -54,7 +52,7 @@
             echo "<div class='post'>
                     <div class='post-stuff'>
                         <div class='post-info'>
-                            <p onclick='showComments(this)' data-after='veja comentários..' >Post de número: $post->id </p>
+                            <p onclick='abrirPopUp(this)' data-after='veja comentários..' >Post de número: $post->id </p>
                             <a href='autor-portfl.php?autor-id=$post->userId' id='autor-id' data-after='Visite o autor!'>
                                 Id do autor: $post->userId
                             </a>
@@ -131,5 +129,11 @@
         }
        ?>
         </div>
+
+
+        
+    <div class="popup-blog"></div>
+
+
     </section>
 <?php @include 'footer.php'; ?>
