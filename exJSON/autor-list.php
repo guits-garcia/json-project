@@ -5,6 +5,28 @@
     <div class="profile-pics">
         <?php
 
+
+        // $servername = "192.168.10.115";
+        // $username = "root";
+        // $password = "d0r1t0s1mp10";
+        // $dbname = "exercício_php_guilherme";
+        // // Create connection
+        // $conn = new mysqli($servername, $username, $password, $dbname);
+        // // Check connection
+        // if ($conn->connect_error) {
+        //     die("Connection failed: " . $conn->connect_error);
+        // }
+        // $sql = "SELECT * FROM users";
+        // $result = $conn->query($sql);
+        // if ($result->num_rows > 0) { // output data of each row
+        //     while($row = $result->fetch_assoc()) {
+
+        //     }
+        // } else {
+        //     //error boohoo
+        // }
+
+
         $ch = curl_init(); 
         $proxy = '192.168.10.254:3128';
         curl_setopt($ch, CURLOPT_URL, 'https://jsonplaceholder.typicode.com/users/'); // request dos USUARIOS
@@ -22,7 +44,7 @@
             }
             //para cada user, pegar o user->id e jogar como parametro no json que eu vou criar com as fotos
             echo "<div class='profile-pic'>";
-            $ch = curl_init(); 
+            $ch = curl_init();
             $proxy = '192.168.10.254:3128';
             curl_setopt($ch, CURLOPT_URL, "https://my-json-server.typicode.com/guits-garcia/guits-json/profilepics?userId=$user->id"); // request das FOTOS
             curl_setopt($ch, CURLOPT_PROXY, $proxy);

@@ -1,19 +1,18 @@
 
 <?php include 'header.php'; ?>
+
+<?php include 'sql-file.php' ?>
+
+
     <section id="posts-wrap">
     <?php
-        $ch = curl_init(); 
-        $proxy = '192.168.10.254:3128';
-        curl_setopt($ch, CURLOPT_URL, 'https://jsonplaceholder.typicode.com/posts/'); // request dos POSTS
-        curl_setopt($ch, CURLOPT_PROXY, $proxy);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        $json =  curl_exec($ch);
-        $posts = json_decode($json);
-        //variáveis e dados para a paginação !!! V
-        $posts_number = count($posts); //descobre quantos posts tem
+        // //variáveis e dados para a paginação !!! V
+        // $posts_number = count($posts); //descobre quantos posts tem
+        $posts_number = 100;
         $posts_per_page = 6;
-        $totalpages = ceil($posts_number/$posts_per_page);
-        curl_close($ch);
+        // $totalpages = ceil($posts_number/$posts_per_page);
+        $totalpages = 17;
+
 
 
         if (isset($_GET['currentpage']) && is_numeric($_GET['currentpage'])) {
@@ -44,17 +43,34 @@
         } else {
             $limite_superior = $posts_number;
         }
-        
-        for($i = $offset; $i < $limite_superior; $i++){
-        // foreach ($posts as $post){
-            $post = $posts[$i];
-            $title_excerpt = substr($post->title,0,20);
-            echo "<div class='post'>
+
+        //faz sentido fazer o query aqui só dos posts delimitados pela paginação ao invés de carregador todos no início do script
+        $servername = "192.168.10.115";
+        $username = "root";
+        $password = "d0r1t0s1mp10";
+        $dbname = "exercício_php_guilherme";
+        // Create connection
+        $conn = new mysqli($servername, $username, $password, $dbname);
+        // Check connection
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        }
+        $sql = "SELECT * FROM posts WHERE id > $offset AND  id <= $limite_superior";
+        $result = $conn->query($sql);
+        if ($result->num_rows > 0) { // output data of each row
+            while($row = $result->fetch_assoc()) {
+                // print_r($row);
+                $post = $row;
+                $title_excerpt = substr($post['title'],0,20);
+                $post_id = $post['id'];
+                $post_userId = $post['userId'];
+                $post_body = $post['body'];
+                echo "<div class='post'>
                     <div class='post-stuff'>
                         <div class='post-info'>
-                            <p onclick='abrirPopUp(this)' data-after='veja comentários..' >Post de número: $post->id </p>
-                            <a href='autor-portfl.php?autor-id=$post->userId' id='autor-id' data-after='Visite o autor!'>
-                                Id do autor: $post->userId
+                            <p onclick='abrirPopUp(this)' data-after='veja comentários..' >Post de número: $post_id </p>
+                            <a href='autor-portfl.php?autor-id=$post_userId' id='autor-id' data-after='Visite o autor!'>
+                                Id do autor: $post_userId
                             </a>
                         </div>
                         <p class='title'> $title_excerpt </p>";
@@ -64,45 +80,52 @@
                         $end = strtotime("22 November 2019");//End point of our date range.
                         $timestamp = mt_rand($start, $end);//Custom range.
                         $fake_data = date("Y-m-d", $timestamp);
+                        $sql_users = "SELECT * FROM users WHERE id = $post_userId";
+                        $result_users = $conn->query($sql_users);
+                        if ($result_users->num_rows > 0) { // output data of each row
+                            while($row_users = $result_users->fetch_assoc()) {
+                                //o que fazer com o resultado
+                                $user = $row_users;
+                                $user_name = $user['name'];
+                                echo "<p class='autor'> Escrito por $user_name em $fake_data </p>";
+                                echo "<p class='content'> $post_body </p>
+                                </div>
+                                <div class='comentarios'>
+                                <hr>
+                                <p> COMENTÁRIOS </p>";
 
-
-                        $cr = curl_init(); 
-                        $proxy = '192.168.10.254:3128';
-                        curl_setopt($cr, CURLOPT_URL, "https://jsonplaceholder.typicode.com/users?id=$post->userId");
-                        curl_setopt($cr, CURLOPT_PROXY, $proxy);
-                        curl_setopt($cr, CURLOPT_RETURNTRANSFER, true);
-                        $data = curl_exec($cr);
-                        $users = json_decode($data);
-                        $user = $users[0];
-                        echo "<p class='autor'> Escrito por $user->name em $fake_data </p>";
-                        echo "<p class='content'> $post->body </p>
-                    </div>
-                        <div class='comentarios'>
-                        <hr>
-                        <p> COMENTÁRIOS </p>";
-                            //aqui gero o código pra puxar apenas o comm referentes ao post atual do foreach $posts
-                            $cr = curl_init(); 
-                            $proxy = '192.168.10.254:3128';
-                            curl_setopt($cr, CURLOPT_URL, "https://jsonplaceholder.typicode.com/comments?postId=$post->id");
-                            curl_setopt($cr, CURLOPT_PROXY, $proxy);
-                            curl_setopt($cr, CURLOPT_RETURNTRANSFER, true);
-                            $data = curl_exec($cr);
-                            $comentarios = json_decode($data);
-                            curl_close($cr);
-                            foreach ($comentarios as $comentario){
-                                echo "<div class='comentario'>
+                                $sql_comments = "SELECT * FROM comments WHERE postId = $post_id";
+                                $result_comments = $conn->query($sql_comments);
+                                if ($result_comments->num_rows > 0) { // output data of each row
+                                    while($row_comments = $result_comments->fetch_assoc()) {
+                                        $comentario = $row_comments;
+                                        $comentario_email = $comentario['email'];
+                                        $comentario_body = $comentario['body'];
+                                        echo "<div class='comentario'>
                                         
                                         <div class='comentario-info'>
-                                            <p>$comentario->email diz: </p>
+                                            <p>$comentario_email diz: </p>
                                         </div>
                                         <div class='comentario-conteudo'>
-                                            <p> $comentario->body </p>
+                                            <p> $comentario_body </p>
                                         </div>
                                       </div>";
+                                    }
+                                    echo "</div>
+                                </div>";
+                                } else {
+                                    //caso não ocorrer a conexão com a db
+                                }
                             }
-                    echo "</div>
-                  </div>";
-        }         ?>
+                        } else {
+                            //caso dê erro na conexão
+                        }
+            }
+        } else {
+            echo "0 results";
+        }
+        $conn->close();
+                ?>
         </div>
         <div class='paginaccion'>
         <?php
@@ -136,4 +159,4 @@
 
 
     </section>
-<?php @include 'footer.php'; ?>
+<?php include 'footer.php'; ?>
