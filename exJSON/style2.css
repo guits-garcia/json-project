@@ -1148,8 +1148,8 @@ body {
 
 #sidenav-tarefas {
   position: fixed;
-  top: 30%;
-  left: 30%;
+  top: 70%;
+  left: 0%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;

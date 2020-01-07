@@ -786,8 +786,9 @@ body {
 
     #sidenav-tarefas{
         position:fixed;
-        top: 30%;
-        left:30%;
+        top: 70%;
+        left:0%;
+        // transform:translate(-55%,-70%);
         display:flex;
         flex-direction:column;
         .sidenav-header{

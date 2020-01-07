@@ -1,31 +1,6 @@
 
-//função para mostrar as fotos de cada album inicio //
-function show_pics(x){
-    if (document.getElementsByClassName('title-x')){
-        let album = x.parentNode.parentNode;
-        let photos = album.childNodes[4];
-        var close = album.childNodes[3].children[1];
-        var title = album.childNodes[3].children[0];
-        if (x.classList[0] == "album-title"){
-            album.childNodes[3].style.justifyContent = "space-between";
-            close.style.display= "block"; //mostra o botão de fechar
-            photos.style.height = "2432px"; //mostra as thumbnails e títulos
-            photos.style.visibility = "visible";
-            photos.style.opacity = "1";
-        } else if (x.classList[0] == "close"){
-            album.childNodes[3].style.justifyContent = "center"; //tudo aqui é pra reverter as mudanças feitas ali em cima
-            close.style.display= "none"; 
-            photos.style.visibility = "hidden";
-            photos.style.height = "0";
-            photos.style.opacity = "0";
-            
-        }
-    }
-}
-//função para mostrar as fotos de cada album fim //
-
 //função para mover a nav das tarefas!!! inicio //
-if (document.getElementById('autor-page')){
+if (document.getElementById('autor-portfl')){
     const nav_bullseye = document.querySelector("#bullseye");
     const nav = document.getElementById('sidenav-tarefas');
     var mousedownFlag;
@@ -186,6 +161,7 @@ x.parentNode.children[5].style.zIndex = "1";
 x.parentNode.children[5].style.opacity = "1";
 x.parentNode.children[5].style.top = "12%";
 x.parentNode.children[5].style.left = "85%";
+document.getElementById('sidenav-tarefas').style.zIndex = "3";
 }
 
 //FUNÇÃO PARA O BACKGROUND IMAGE EM AUTOR LIST INICIO //
@@ -193,7 +169,6 @@ var startPos = 582;
 var passo = 50;
 function getYoUrl(x){
         var img_url = x.src;
-        // console.log(img_url);
         // var profile_pics = document.getElementsByClassName('middle-img')[0];
         var movingPic = document.getElementsByClassName('middle-img-behind')[0];
         movingPic.src = img_url;
@@ -205,7 +180,6 @@ function getYoUrl(x){
         } else if (startPos >= 583){
             passo *= -1;
         }
-        console.log(startPos);
         // movingPic.style.left = "120px";
     }
     function hideYoImg(x){
@@ -213,11 +187,11 @@ function getYoUrl(x){
         var movingPic = document.getElementsByClassName('middle-img-behind')[0];
         movingPic.style.opacity = 0;
     }
-//FUNÇÃO PARA O BACKGROUND IMAGE EM AUTOR LIST INICIO //
+//FUNÇÃO PARA O BACKGROUND IMAGE EM AUTOR LIST FIM //
 
 
-// var texts = document.getElementsByClassName('album-anchor')[0].textContent;
-// document.getElementsByClassName('album-anchor')[0].classList.add('effect');
+
+//FUNÇÃO TYPEWRITTER EM AUTOR LIST INÍCIO
 if (document.getElementsByClassName('album-anchor')){
     function type(){
         if (count === texts.length){
@@ -256,8 +230,10 @@ if (document.getElementsByClassName('album-anchor')){
     
 }
 
+//FUNÇÃO TYPEWRITTER EM AUTOR LIST FIM
 
-//funçào popup index //
+
+//funçào popup index INÍCIO //
 
 function abrirPopUp(x){
     if(x.dataset.after == 'veja comentários..'){
@@ -335,14 +311,6 @@ function abrirPopUp(x){
                                                         }
                                                     })
                                                 });
-                                            
-
-
-
-
-
-
-
                         },
                         error: function(result){
                             console.error(result);
@@ -362,9 +330,76 @@ function abrirPopUp(x){
         document.querySelector('.popup-blog').style.animation = 'none';
         document.querySelector('.popup-blog').innerHTML = "";
     }
-       
-   
-  
+}
+
+//funçào popup index FIM //
+
+
+
+//função para carregar apenas o álbum selecionado -> album-page.php INÍCIO //
+
+
+
+function show_pics(x){ //essa função faz aparecerem as fotos - acho que preciso carregar elas primeiros com o ajax mas bls //
+    if (document.getElementsByClassName('title-x')){
+        let album = x.parentNode.parentNode;
+        let photos = album.childNodes[4];
+        var close = album.childNodes[3].children[1];
+        var title = album.childNodes[3].children[0];
+        if (x.classList[0] == "album-title"){ // aqui é quando clica pra abrir
+            let album_id = album.id;
+
+            $(document).ready(function(){
+                var Url =`https://jsonplaceholder.typicode.com/photos?albumId=${album_id}`;
+                $.ajax({
+                    url:Url,
+                    type:"GET",
+                    success: function(result){
+                        for (let i = 0; i < result.length; i++){
+                            let photo_thumbnailUrl = result[i]['thumbnailUrl'];
+                            let photo_url = result[i]['url'];
+                            let photo_title = result[i]['title'];
+                            let photo_id = result[i]['id'];
+                            photos.innerHTML += `<div class='photo'><img class='thumbnail' src='${photo_thumbnailUrl}' data-url='${photo_url}' onclick='showModal(this)'><p>${photo_title} #${photo_id}</p></div>`;
+                        }
+                        
+                        
+                        
+                        
+            
+                    },
+                    error:function(error){
+                        console.log(`Error ${error}`)
+                    }
+                })
+            })
+            
+            
+            album.childNodes[3].style.justifyContent = "space-between";
+            close.style.display= "block"; //mostra o botão de fechar
+            photos.style.height = "2432px"; //mostra as thumbnails e títulos
+            photos.style.visibility = "visible";
+            photos.style.opacity = "1";
+
+        } else if (x.classList[0] == "close"){
+            album.childNodes[3].style.justifyContent = "center"; //tudo aqui é pra reverter as mudanças feitas ali em cima
+            close.style.display= "none"; 
+            photos.style.visibility = "hidden";
+            photos.style.height = "0";
+            photos.style.opacity = "0";
+            
+        }
+    }
 }
 
 
+
+
+
+
+
+
+
+
+
+//função para carregar apenas o álbum selecionado -> album-page.php FIM //

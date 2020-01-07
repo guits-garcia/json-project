@@ -2,17 +2,34 @@
 <?php include 'header.php'; ?>
 
 <?php include 'sql-file.php' ?>
-
+<?php
+$servername = "192.168.10.115";
+        $username = "root";
+        $password = "d0r1t0s1mp10";
+        $dbname = "exercício_php_guilherme";
+        // Create connection
+        $conn = new mysqli($servername, $username, $password, $dbname);
+        // Check connection
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        }
+        ?>
 
     <section id="posts-wrap">
     <?php
+        
+        $sql = "SELECT COUNT(id) as total FROM posts";
+        $result = $conn->query($sql);
+        $result = $result->fetch_assoc();
+        
         // //variáveis e dados para a paginação !!! V
         // $posts_number = count($posts); //descobre quantos posts tem
-        $posts_number = 100;
+        $posts_number = $result['total'];
         $posts_per_page = 6;
-        // $totalpages = ceil($posts_number/$posts_per_page);
-        $totalpages = 17;
+        $totalpages = ceil($posts_number/$posts_per_page);
+    
 
+        
 
 
         if (isset($_GET['currentpage']) && is_numeric($_GET['currentpage'])) {
@@ -45,17 +62,9 @@
         }
 
         //faz sentido fazer o query aqui só dos posts delimitados pela paginação ao invés de carregador todos no início do script
-        $servername = "192.168.10.115";
-        $username = "root";
-        $password = "d0r1t0s1mp10";
-        $dbname = "exercício_php_guilherme";
-        // Create connection
-        $conn = new mysqli($servername, $username, $password, $dbname);
-        // Check connection
-        if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
-        }
-        $sql = "SELECT * FROM posts WHERE id > $offset AND  id <= $limite_superior";
+       
+        // $sql = "SELECT * FROM posts WHERE id > $offset AND  id <= $limite_superior";
+        $sql = "SELECT * FROM posts WHERE id > $offset LIMIT $posts_per_page";
         $result = $conn->query($sql);
         if ($result->num_rows > 0) { // output data of each row
             while($row = $result->fetch_assoc()) {
